@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Image Review</title>
+  <link href="style.css" rel="stylesheet" />
+</head>
+<body>
+<div class="main-container">
+  <div class="input-container">
+    Clic aquí para subir tu avatar
+    <input type="file" id="archivo" name="archivo" />
+  </div>
+  <div class="preview-container">
+    <img src="" id="preview">
+  </div>
+</div>
+
+<script>
+
+  function mostrarImagen(event){
+    var imagenSource = event.target.result;
+    var previewImage = document.getElementById('preview');
+
+    previewImage.src = imagenSource;
+  }
+
+  function procesarArchivo(event){
+     var imagen = event.target.files[0];
+
+     var lector = new FileReader();
+
+     lector.addEventListener('load', mostrarImagen, false);
+
+     lector.readAsDataURL(imagen);
+  }
+
+  document.getElementById('archivo')
+    .addEventListener('change', procesarArchivo, false)
+</script>
+</body>
+</html>
